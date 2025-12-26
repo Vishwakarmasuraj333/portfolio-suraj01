@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Suraj</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    header {
+      background-color: #0066ff;
+      color: white;
+      padding: 20px 40px;
+      align-items: center;
+      justify-content: space-between;
+      display: flex;
+      position: relative;
+    }
+
+    .logo {
+      font-size: 30px;
+      color: aqua;
+      font-style: italic;
+      text-shadow: 0 4px 8px rgb(133, 18, 133);
+      font-weight: bold;
+
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 20px;
+    }
+
+    .hum {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 4px;
+      margin-left: auto;
+    }
+
+    .hum span {
+      width: 35px;
+      height: 5px;
+      border-radius: 5px;
+      background-color: white;
+
+    }
+
+    .hum.active span:nth-child(1) {
+
+      transform: rotate(45deg) translate(6px, 6px);
+    }
+
+    .hum.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hum.active span:nth-child(3) {
+
+      transform: rotate(-45deg) translate(6px, -6px);
+    }
+
+    @media (max-width:768px) {
+      nav ul {
+        flex-direction: column;
+        top: -100vh;
+        border-top: 4px solid aqua;
+        background-color: rgba(35, 144, 233, 0.388);
+        left: 0;
+        width: 100%;
+        backdrop-filter: blur(20px);
+        height: 100vh;
+        text-align: center;
+        padding: 50px;
+        position: absolute;
+        z-index: 999;
+        transition: all 0.5s ease;
+      }
+
+      .hum {
+        display: flex;
+      }
+
+      nav ul.active {
+        top: 70px;
+      }
+
+
+    }
+
+    .about {
+      padding: 80px 40px;
+      background: #f4f8ff;
+    }
+
+    .about-container {
+      max-width: 1100px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      animation-delay: 0.4s;
+      animation: fadeInLeft 1s forwards;
+      gap: 50px;
+    }
+
+
+    .about-img img {
+      width: 450px;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+
+    .about-text h2 {
+      font-size: 36px;
+      color: #0066ff;
+      margin-bottom: 20px;
+    }
+
+    .about-text p {
+      font-size: 16px;
+      line-height: 1.8;
+      color: #333;
+      margin-bottom: 15px;
+    }
+
+    .about-btn {
+      padding: 12px 25px;
+      background: #0066ff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: 0.3s;
+    }
+
+    .about-btn:hover {
+      background: #0044cc;
+    }
+
+
+    @media (max-width: 768px) {
+      .about-container {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .about-img img {
+        width: 250px;
+      }
+
+
+    }
+
+    .cards {
+      padding: 80px 40px;
+      background: #f9fbff;
+    }
+
+    .cards-wrapper {
+      max-width: 1200px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 30px;
+    }
+
+    .card-container {
+      background: white;
+      border-radius: 15px;
+      animation: fadeInRight 2s forwards;
+      overflow: hidden;
+      animation-delay: 0.9s;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      transition: transform 0.3s ease;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .card-container:hover {
+      transform: translateY(-10px);
+    }
+
+    .card-container img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+
+    .card-container h2 {
+      padding: 15px;
+      font-size: 18px;
+      color: #0066ff;
+    }
+
+    /* 📱 MOBILE FIX */
+    @media (max-width: 992px) {
+      .cards-wrapper {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      }
+    }
+
+    @media (max-width: 576px) {
+      .cards {
+        padding: 50px 20px;
+      }
+
+      .card-container img {
+        height: 250px;
+      }
+
+      .cards-wrapper {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+    }
+
+
+    .blogs {
+      background: linear-gradient(135deg, rgb(82, 102, 233), #4a6cff);
+      padding: 80px 40px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 40px;
+    }
+
+    /* BLOG CARD */
+    .blog-container {
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+      transition: all 0.35s ease;
+      text-align: center;
+      animation: fadeInTop 1s forwards;
+      animation-delay: 0.14s;
+    }
+
+    .blog-container:hover {
+      transform: translateY(-12px) scale(1.02);
+      box-shadow: 0 25px 45px rgba(0, 0, 0, 0.3);
+    }
+
+    /* IMAGE */
+    .blog-container img {
+      width: 100%;
+      height: 220px;
+      border-radius: 12px;
+      object-fit: cover;
+      margin-bottom: 15px;
+    }
+
+    /* TEXT */
+    .blogs-text {
+      font-size: 16px;
+      line-height: 1.6;
+      color: #333;
+    }
+
+    /* BUTTON GROUP */
+    .btn-group {
+      margin-top: 20px;
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* BUTTONS */
+    #hire-me,
+    #Resume {
+      padding: 12px 22px;
+      border-radius: 10px;
+      border: none;
+      font-size: 15px;
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    /* HIRE */
+    #hire-me {
+      background: linear-gradient(135deg, #0066ff, #0044cc);
+    }
+
+    #hire-me:hover {
+      background: linear-gradient(135deg, #0044cc, #002f99);
+      transform: translateY(-2px);
+    }
+
+    /* RESUME */
+    #Resume {
+      background: linear-gradient(135deg, #ff2e2e, #b90f0f);
+    }
+
+    #Resume:hover {
+      background: linear-gradient(135deg, #b90f0f, #8f0b0b);
+      transform: translateY(-2px);
+    }
+
+    /* 📱 MOBILE */
+    @media (max-width: 576px) {
+      .blogs {
+        padding: 60px 20px;
+      }
+
+      .blog-container img {
+        height: 180px;
+      }
+
+      .blogs-text {
+        font-size: 15px;
+      }
+    }
+
+
+    .contact {
+      padding: 80px 40px;
+      text-align: center;
+      background-color: white;
+    }
+
+    .contact h2 {
+      font-size: 36px;
+      color: #0066ff;
+      margin-bottom: 40px;
+    }
+
+    /* FORM */
+    .contact-form {
+      max-width: 500px;
+      animation: fadeInBottom 1s forwards;
+      animation-delay: 0.16s;
+      margin: auto;
+      padding: 40px;
+      background-color: white;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 14px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+      outline: none;
+    }
+
+    .form-group textarea {
+      resize: none;
+      height: 120px;
+    }
+
+    /* BUTTON */
+    .contact-form button {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 8px;
+      background: #0066ff;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .contact-form button:hover {
+      background: #0044cc;
+    }
+
+    /* 📱 RESPONSIVE */
+    @media (max-width: 576px) {
+      .contact {
+        padding: 60px 20px;
+      }
+
+      .contact-form {
+        padding: 25px;
+      }
+
+      .contact h2 {
+        font-size: 28px;
+      }
+    }
+
+    .login {
+      padding: 80px 40px;
+      background-color: rgb(81, 99, 238);
+      text-align: center;
+    }
+
+    .login h2 {
+      font-size: 36px;
+      color: white;
+      margin-bottom: 30px;
+    }
+
+    /* FORM */
+    .login-form {
+      max-width: 400px;
+      margin: auto;
+      background-color: white;
+      animation: fadeInLeft 1s forwards;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .login-form .form-group {
+      margin-bottom: 20px;
+    }
+
+    .login-form input {
+      width: 100%;
+      padding: 14px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+      outline: none;
+    }
+
+    /* BUTTON */
+    .login-form button {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 8px;
+      background-color: #0066ff;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .login-form button:hover {
+      background: #0044cc;
+    }
+
+    .login-text {
+      margin-top: 20px;
+      font-size: 14px;
+    }
+
+    .login-text a {
+      color: #0066ff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    /* 📱 RESPONSIVE */
+    @media (max-width: 576px) {
+      .login {
+        padding: 60px 20px;
+      }
+
+      .login-form {
+        padding: 25px;
+      }
+
+      .login h2 {
+        font-size: 28px;
+      }
+    }
+
+    .skills {
+      padding: 80px 40px;
+      background: #f8faff;
+      animation: fadeInRight 1s forwards;
+    }
+
+    .skills-title {
+      text-align: center;
+      font-size: 36px;
+      color: #0b5ed7;
+      margin-bottom: 60px;
+      letter-spacing: 1px;
+    }
+
+    .skills-wrapper {
+      max-width: 1200px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 30px;
+    }
+
+    /* Skill Card */
+    .skill-card {
+      background: white;
+      border-radius: 16px;
+      padding: 30px 20px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+      transition: all 0.35s ease;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    .skill-card img {
+      width: 70px;
+      margin-bottom: 20px;
+    }
+
+    .skill-card h3 {
+      font-size: 20px;
+      color: #222;
+      margin-bottom: 10px;
+    }
+
+    .skill-card p {
+      font-size: 15px;
+      color: #666;
+      line-height: 1.6;
+    }
+
+    /* Mobile */
+    @media (max-width: 576px) {
+      .skills {
+        padding: 60px 20px;
+      }
+
+      .skills-title {
+        font-size: 28px;
+      }
+    }
+
+    .footer {
+      background-color: rgb(68, 64, 64);
+      ;
+      color: #fff;
+      padding: 50px 20px 20px 20px;
+      font-family: Arial, sans-serif;
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+
+    .footer-about,
+    .footer-links,
+    .footer-contact {
+      flex: 1;
+      min-width: 250px;
+    }
+
+    .footer-about h3 {
+      font-size: 24px;
+      color: aqua;
+      margin-bottom: 15px;
+    }
+
+    .footer-about p {
+      line-height: 1.6;
+      color: white;
+    }
+
+    .footer-links h4,
+    .footer-contact h4 {
+      font-size: 20px;
+      margin-bottom: 10px;
+      color: aqua;
+    }
+
+    .footer-links ul {
+      list-style: none;
+    }
+
+    .footer-links ul li {
+      margin-bottom: 8px;
+    }
+
+    .footer-links ul li a {
+      color: #ccc;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .footer-links ul li a:hover {
+      color: #ddff00;
+    }
+
+    .footer-contact p {
+      margin-bottom: 8px;
+      color: #cccccc;
+    }
+
+    .social-icons {
+      margin-top: 10px;
+
+    }
+
+    .social-icons a {
+      display: inline-block;
+      margin-right: 10px;
+    }
+
+    .social-icons img {
+      width: 30px;
+      height: 30px;
+      transition: 0.3s;
+    }
+
+    .social-icons img:hover {
+      transform: scale(1.2);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      border-top: 1px solid aqua;
+      padding-top: 15px;
+      margin-top: 20px;
+      color: rgb(84, 192, 156);
+    }
+
+    /* Responsive Footer */
+    @media(max-width: 768px) {
+      .footer-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .footer-about,
+      .footer-links,
+      .footer-contact {
+        margin-bottom: 20px;
+      }
+    }
+
+    .certifications {
+      padding: 80px 40px;
+      background: #f4f8ff;
+      text-align: center;
+    }
+
+    .certifications h2 {
+      color: #0066ff;
+      font-size: 32px;
+      margin-bottom: 40px;
+    }
+
+    .cert-wrapper {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .cert-card {
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      padding: 20px;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .cert-card:hover {
+      transform: translateY(-10px);
+    }
+
+    .cert-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+
+    .cert-card h3 {
+      color: #0066ff;
+      margin-bottom: 10px;
+    }
+
+    .cert-card p {
+      font-size: 14px;
+      color: #333;
+      margin-bottom: 5px;
+    }
+
+    /* Responsive */
+    @media (max-width: 576px) {
+      .certifications {
+        padding: 50px 20px;
+      }
+
+      .cert-card img {
+        height: 150px;
+      }
+    }
+
+    @keyframes fadeInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-50px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes fadeInRight {
+      from {
+        opacity: 0;
+        transform: translateX(50px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes fadeInTop {
+      from {
+        opacity: 0;
+        transform: translateY(-50px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInBottom {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+
+    .animate-left {
+      animation-delay: 0.4s;
+    }
+
+    .animate-right {
+      animation-delay: 0.8s;
+    }
+
+    .animate-top {
+      animation-delay: 0.10s;
+    }
+
+    .animate-bottom {
+      animation-delay: 0.16s;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo">Suraj</div>
+
+    <div id="hum" class="hum">
+      <span></span>
+      <span></span><span></span>
+    </div>
+    <nav>
+      <ul id="navlinks">
+        <li>Home</li>
+        <li>About</li>
+        <li>Login</li>
+        <li>Contact</li>
+      </ul>
+
+    </nav>
+  </header>
+  <section class="about">
+    <div class="about-container">
+
+
+      <div class="about-img">
+        <img
+          src="https://img.freepik.com/premium-photo/portrait-successful-programmer-game-developer-coder-guy-uses-computer-laptop-work-game-design-hacker-boy-generative-ai-cyber-gamer_117038-7605.jpg?w=2000"
+          alt="Suraj">
+      </div>
+
+      <div class="about-text">
+        <h2>About Me</h2>
+        <p>
+          Hello! My name is <b style="color:rgb(231, 62, 231); font-size: 20px;">Suraj</b>.
+          I am a passionate <b style="color:rgb(44, 111, 219); font-size: 20px;">Web Developer</b> who loves creating
+          modern,
+          responsive and user-friendly websites.
+        </p>
+
+        <p>
+          I work with HTML, CSS, JavaScript and enjoy learning new technologies
+          to build real-world projects.
+        </p>
+
+        <button class="about-btn">Download CV</button>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="cards">
+    <div class="cards-wrapper">
+
+      <div class="card-container">
+        <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=1169&auto=format&fit=crop" alt="">
+        <h2>Frontend Developer</h2>
+      </div>
+
+      <div class="card-container">
+        <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=1169&auto=format&fit=crop" alt="">
+        <h2>Backend Developer</h2>
+      </div>
+
+      <div class="card-container">
+        <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=1169&auto=format&fit=crop" alt="">
+        <h2>Full Stack Developer</h2>
+      </div>
+
+      <div class="card-container">
+        <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=1169&auto=format&fit=crop" alt="">
+        <h2>UI / UX Designer</h2>
+      </div>
+
+      <div class="card-container">
+        <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=1169&auto=format&fit=crop" alt="">
+        <h2>JavaScript Developer</h2>
+      </div>
+
+      <div class="card-container">
+        <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=1169&auto=format&fit=crop" alt="">
+        <h2>React Developer</h2>
+      </div>
+
+      <div class="card-container">
+        <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=1169&auto=format&fit=crop" alt="">
+        <h2>Angular Developer</h2>
+      </div>
+
+      <div class="card-container">
+        <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=1169&auto=format&fit=crop" alt="">
+        <h2>Web Designer</h2>
+      </div>
+
+    </div>
+  </section>
+
+
+
+  <section class="blogs">
+    <div class="blog-container">
+      <img src="https://as1.ftcdn.net/jpg/06/01/17/18/1000_F_601171827_GwbDHEuhisbGFXRfIpXFhtf7wAvsbLut.jpg"
+        alt="blog-img">
+      <div class="blogs-text">
+        <p>💻 Frontend & Backend Developer | full-stack 🌐 JavaScript | React | Node.js | Express | MongoDB🚀 Always
+          learning & exploring new technologies📫 Let's colleb</p>
+        <div class="btn-group">
+          <button id="hire-me">Hire me</button>
+          <button id="Resume">Resume</button>
+        </div>
+      </div>
+    </div>
+    <div class="blog-container">
+      <img src="https://as1.ftcdn.net/jpg/06/01/17/18/1000_F_601171827_GwbDHEuhisbGFXRfIpXFhtf7wAvsbLut.jpg"
+        alt="blog-img">
+      <div class="blogs-text">
+        <p>💻 Frontend & Backend Developer | full-stack 🌐 JavaScript | React | Node.js | Express | MongoDB🚀 Always
+          learning & exploring new technologies📫 Let's colleb</p>
+        <div class="btn-group">
+          <button id="hire-me">Hire me</button>
+          <button id="Resume">Resume</button>
+        </div>
+      </div>
+    </div>
+    <div class="blog-container">
+      <img src="https://as1.ftcdn.net/jpg/06/01/17/18/1000_F_601171827_GwbDHEuhisbGFXRfIpXFhtf7wAvsbLut.jpg"
+        alt="blog-img">
+      <div class="blogs-text">
+        <p>💻 Frontend & Backend Developer | full-stack 🌐 JavaScript | React | Node.js | Express | MongoDB🚀 Always
+          learning & exploring new technologies📫 Let's colleb</p>
+        <div class="btn-group">
+          <button id="hire-me">Hire me</button>
+          <button id="Resume">Resume</button>
+        </div>
+      </div>
+    </div>
+
+  </section>
+  <section class="certifications">
+    <h2>Certifications & Achievements</h2>
+    <div class="cert-wrapper">
+      <div class="cert-card">
+        <img src="simplelearn1.jpeg" alt="Certification 1">
+        <h3>Web Development</h3>
+        <p>Platform: Coursera</p>
+        <p>Date: Jan 2024</p>
+      </div>
+      <div class="cert-card">
+        <img src="simplelearn2.jpeg" alt="Certification 2">
+        <h3>JavaScript Mastery</h3>
+        <p>Platform: Udemy</p>
+        <p>Date: Mar 2024</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact">
+    <h2>Contact Me</h2>
+
+    <form class="contact-form">
+      <div class="form-group">
+        <input type="text" placeholder="Your Name" required>
+      </div>
+
+      <div class="form-group">
+        <input type="email" placeholder="Your Email" required>
+      </div>
+
+      <div class="form-group">
+        <textarea placeholder="Your Message" required></textarea>
+      </div>
+
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <section class="login">
+    <h2>Login</h2>
+
+    <form class="login-form">
+      <div class="form-group">
+        <input type="email" placeholder="Email Address" required>
+      </div>
+
+      <div class="form-group">
+        <input type="password" placeholder="Password" required>
+      </div>
+
+      <button type="submit">Login</button>
+
+      <p class="login-text">
+        Don’t have an account?
+        <a href="#">Sign Up</a>
+      </p>
+    </form>
+  </section>
+
+  <section class="skills">
+    <h2 class="skills-title">Professional Skills</h2>
+
+    <div class="skills-wrapper">
+
+      <div class="skill-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/732/732212.png" alt="HTML">
+        <h3>HTML5</h3>
+        <p>Semantic, SEO-friendly, accessible markup</p>
+      </div>
+
+      <div class="skill-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/732/732190.png" alt="CSS">
+        <h3>CSS3</h3>
+        <p>Responsive layouts, Flexbox, Grid</p>
+      </div>
+
+      <div class="skill-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/5968/5968292.png" alt="JavaScript">
+        <h3>JavaScript</h3>
+        <p>ES6+, DOM, API integration</p>
+      </div>
+
+      <div class="skill-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/919/919851.png" alt="React">
+        <h3>React</h3>
+        <p>Component-based modern UI</p>
+      </div>
+
+      <div class="skill-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/919/919825.png" alt="Node">
+        <h3>Node.js</h3>
+        <p>Backend APIs & server-side logic</p>
+      </div>
+
+      <div class="skill-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/5968/5968342.png" alt="MongoDB">
+        <h3>MongoDB</h3>
+        <p>NoSQL database management</p>
+      </div>
+      <div class="skill-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/919/919853.png" alt="Angular">
+        <h3>Angular</h3>
+        <p>Enterprise-level frontend framework with TypeScript</p>
+      </div>
+
+      <div class="skill-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/528/528260.png" alt="MySQL">
+        <h3>MySQL</h3>
+        <p>Relational database, optimized queries & data design</p>
+      </div>
+
+    </div>
+
+  </section>
+  <footer class="footer">
+    <div class="footer-container">
+
+      <div class="footer-about">
+        <h3>Suraj Portfolio</h3>
+        <p>Passionate Web Developer creating modern, responsive websites with HTML, CSS, JavaScript, and more.</p>
+      </div>
+
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#about">About Me</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-contact">
+        <h4>Contact</h4>
+        <p>Email: suraj@example.com</p>
+        <p>Phone: +91 9370944696</p>
+        <div class="social-icons">
+          <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn"></a>
+          <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="GitHub"></a>
+          <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Twitter"></a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2025 Suraj. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+
+  <script>
+    let hum = document.getElementById("hum");
+    let menu = document.getElementById("navlinks");
+    hum.addEventListener('click', () => {
+      menu.classList.toggle("active");
+      hum.classList.toggle("active");
+
+    })
+  </script>
+</body>
+
+</html>
